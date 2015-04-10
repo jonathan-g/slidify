@@ -10,7 +10,8 @@ slidifyDefaults <- function(){list(
   copy_libraries = TRUE,
   mode = 'standalone',
   widgets = list(),
-  onefile = FALSE
+  onefile = FALSE,
+  package_library = "slidifyLibraries"
 )}
 
 #' Get configuration
