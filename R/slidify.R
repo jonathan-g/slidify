@@ -81,7 +81,7 @@ blogify <- function(blogDir = ".", envir = parent.frame()){
 
 check_slidifyLibraries <- function(pkg = 'slidifyLibraries', min_ver = 0.3){
   if (require(pkg) && packageVersion(pkg) <= min_ver){
-    stop(paste("Stop! You need to update", pkg)
+    stop(paste("Stop! You need to update", pkg))
   }
   if (pkg != 'slidifyLibraries') check_slidifyLibraries()
   return(invisible())
