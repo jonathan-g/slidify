@@ -20,6 +20,8 @@ Imports:
     stringr (>= 1.0.0),
     yaml,
     whisker
+Suggests:
+    testthat
 License: MIT
 URL: https://github.com/jonathan-g/slidify/
 BugReports: https://github.com/jonathan-g/slidify/issues

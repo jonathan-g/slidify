@@ -31,6 +31,7 @@ render_slides <- function(slides, layouts, payload){
 #' @param payload list containing site and pages
 #' @param return_page return the page object after rendering
 #' @param save_payload save the payload as a .Rdata file?
+#' @export
 #  TODO: Refactor by splitting code into smaller manageable chunks
 render_page <- function(page, payload, return_page = FALSE, save_payload = FALSE){
   in_dir(dirname(page$file), {
@@ -110,6 +111,7 @@ render_page <- function(page, payload, return_page = FALSE, save_payload = FALSE
 #' Render pages
 #' 
 #' @noRd
+#' @export
 render_pages <- function(pages, site, tags, ...){
   payload = list(site = site, pages = pages, tags = tags)
   invisible(lapply(pages, render_page, payload = payload, ...)) 

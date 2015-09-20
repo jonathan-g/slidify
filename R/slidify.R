@@ -5,6 +5,7 @@
 #' @param return_page should the function return the payload
 #' @param save_payload should the payload be saved to the slide directory
 #' @param envir is the environment in which to execute code.
+#' @export
 slidify <- pagify <- function(inputFile, knit_deck = TRUE, 
   return_page = FALSE, save_payload = FALSE, envir = parent.frame()){
   
@@ -24,6 +25,7 @@ slidify <- pagify <- function(inputFile, knit_deck = TRUE,
 #' Convert a directory of Rmd documents into HTML5
 #' 
 #' @noRd
+#' @export
 blogify <- function(blogDir = ".", envir = parent.frame()){
   site = yaml.load_file('site.yml')
   cwd   = getwd(); on.exit(setwd(cwd))
@@ -41,45 +43,8 @@ blogify <- function(blogDir = ".", envir = parent.frame()){
   return(invisible(list(pages = pages, site = site, tags = tags)))
 }
 
-#' Convert an Rmd document into HTML5 using a framework
-#' 
-#' @param inputFile path to input Rmd document
-#' @param outputFile path to output html document; default uses inputFile
-#' @param knit_deck should the input file be knit?; default is TRUE
-#' @return path to outputFile
-#' @seealso slidify-package
-#' @export
-#  This function has been replaced by pagify and needs to be DEPRECATED
-#  It would be good to specify slidify as an alias to maintain compatibility
-# slidify <- function(inputFile, outputFile, knit_deck = TRUE){
-#   if (knit_deck == TRUE){
-#     inputFile = inputFile %|% knit
-#   }
-#   deck = inputFile %|% parse_deck
-#   
-#   if (deck$mode == 'selfcontained'){
-#     deck$url[['lib']] <- deck$url[['lib']] %||% 'libraries'
-#     with(deck, copy_libraries(framework, highlighter, widgets, url$lib))
-#   }
-#   
-#   # add layouts, urls and stylesheets from frameworks, widgets and assets
-#   deck = deck %|% add_urls %|% add_stylesheets %|% add_config_fr
-#   layouts = get_layouts(deck$url$layouts)
-#   layouts = modifyList(layouts, list(javascripts = get_javascripts(deck)))
-#   
-#   if (missing(outputFile)){
-#     outputFile = gsub("*.[R]?md$", '.html', inputFile)
-#   }
-#   
-#   cat(render_deck(deck, layouts), file = outputFile)
-#   
-#   if (deck$mode == 'standalone'){
-#     outputFile = make_standalone(deck, outputFile)
-#   }
-#   
-#   return(outputFile)
-# }
-
+#' check that slidify libraries are installed
+#' @noRd
 check_slidifyLibraries <- function(pkg = 'slidifyLibraries', min_ver = 0.3){
   if (require(pkg) && packageVersion(pkg) <= min_ver){
     stop(paste("Stop! You need to update", pkg))
@@ -91,6 +56,7 @@ check_slidifyLibraries <- function(pkg = 'slidifyLibraries', min_ver = 0.3){
 #' Custom Knit function for RStudio
 #' 
 #' @noRd
+#' @export
 knit2slides <- function(inputFile, encoding) {
   
   # render slides

@@ -33,6 +33,7 @@ parse_page <- function(postFile, knit_deck = TRUE, envir){
 #' 
 #' @param inputFile path to markdown file to parse
 #' @noRd
+#' @export
 parse_deck <- function(inputFile){
   deck = inputFile %|% to_deck 
   deck$slides = deck$slides %|% split_slides %|% parse_slides  

@@ -4,6 +4,7 @@
 #' @param appDir  directory for shiny app
 #' @param shiny   use shiny
 #' @description Run a slide deck
+#' @export
 runDeck <- function(deckDir = ".", appDir = file.path(deckDir, "apps"), 
   shiny = TRUE, ...){
   require(shiny)
@@ -40,6 +41,7 @@ runDeck <- function(deckDir = ".", appDir = file.path(deckDir, "apps"),
 
 #' Include a slidify created html document in Shiny
 #' @noRd
+#' @export
 includeDeck <- function(path){
   shiny:::dependsOnFile(path)
   slidifyLibraries::make_interactive()
@@ -181,8 +183,18 @@ re_capture <- function(pattern, string, ...) {
 #' @import rhoedown
 #' @keywords internal
 #' @noRd
-md2html <- function(md){
-  renderMarkdown(text = md, renderer.options = markdownExtensions())
+md2html <- function(md, render.flags = NULL, render.exts = NULL){
+  if (is.null(render.flags)) {
+    render.flags = getOption('rhoedown.HTML.options')
+    if (is.null(render.flags))
+      render.flags = markdownHTMLOptions()
+  }
+  if (is.null(render.exts)) {
+    render.exts = getOption('rhoedown.extensions')
+    if (is.null(render.exts))
+      render.exts = markdownExtensions()
+  }
+  renderMarkdown(text = md, renderer.options = render.flags, extensions = render.exts)
 }
 
 #' Merge two lists by name
@@ -284,6 +296,9 @@ combine_lists <- function(x, y){
   })
 }
 
+#'
+#' @noRd
+#' @export
 view_deck <- function(dir = "."){
   td <- file.path(tempdir(), basename(tempfile(pattern = 'slidify')))
   suppressMessages(copy_dir(".", td))
