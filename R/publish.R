@@ -123,7 +123,6 @@ publish_gist <- function(title,
   )
 }
 
-#' @internal
 getCredentials = function (){
   if (is.null(getOption("github.username"))){
     username <- readline("Please enter your github username: ")

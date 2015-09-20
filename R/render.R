@@ -29,6 +29,8 @@ render_slides <- function(slides, layouts, payload){
 #' 
 #' @param page list containing the parsed page
 #' @param payload list containing site and pages
+#' @param return_page return the page object after rendering
+#' @param save_payload save the payload as a .Rdata file?
 #  TODO: Refactor by splitting code into smaller manageable chunks
 render_page <- function(page, payload, return_page = FALSE, save_payload = FALSE){
   in_dir(dirname(page$file), {

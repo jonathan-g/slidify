@@ -1,4 +1,9 @@
 #' Run a slide Deck
+#'
+#' @param deckDir directory where the deck resides
+#' @param appDir  directory for shiny app
+#' @param shiny   use shiny
+#' @description Run a slide deck
 runDeck <- function(deckDir = ".", appDir = file.path(deckDir, "apps"), 
   shiny = TRUE, ...){
   require(shiny)
@@ -73,7 +78,7 @@ includeDeck <- function(path){
 #' @noRd
 embed_images <- function(html_in){
   html <- paste(readLines(html_in, warn = F), collapse = "\n")
-  html <- markdown:::.b64EncodeImages(html)
+  html <- rhoedown:::.b64EncodeImages(html)
   return(html)
 }
 
@@ -173,7 +178,7 @@ re_capture <- function(pattern, string, ...) {
 
 #' Convert markdown document into html
 #' 
-#' @import markdown
+#' @import rhoedown
 #' @keywords internal
 #' @noRd
 md2html <- function(md){
@@ -252,7 +257,7 @@ mgsub <- function(myrepl, mystring){
 make_standalone <- function(deck, html_in){
   lib_cdn = paste0(deck$lib_cdn %||% 'http://slidifylibraries2.googlecode.com/git/inst/libraries', '/')
   lib_url = paste0(deck$url$lib, '/')
-  html = read_file(html_in, warn = FALSE) %|% markdown:::.b64EncodeImages
+  html = read_file(html_in, warn = FALSE) %|% rhoedown:::.b64EncodeImages
   html = gsub(lib_url, lib_cdn, html)
   # html_out = sprintf('%s.html', basename(getwd()))
   cat(html, file = html_in)

@@ -4,6 +4,7 @@
 #' @param knit_deck whether the file needs to be run through knit
 #' @param return_page should the function return the payload
 #' @param save_payload should the payload be saved to the slide directory
+#' @param envir is the environment in which to execute code.
 slidify <- pagify <- function(inputFile, knit_deck = TRUE, 
   return_page = FALSE, save_payload = FALSE, envir = parent.frame()){
   
