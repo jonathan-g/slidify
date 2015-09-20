@@ -9,10 +9,12 @@ Slidify helps you create and publish beautiful HTML5 presentations from [RMarkdo
 
 Slidify is still under heavy development. You can install it from `github` using the `devtools` package. You will also need `slidifyLibraries` which contains all external libraries required by `slidify`.
 
-```r
-install_github('ramnathv/slidify')
-install_github('ramnathv/slidifyLibraries')
 ```
+install_github('jonathan-g/slidify')
+install_github('jonathan-g/slidifyLibraries')
+```
+
+This version is forked from @ramnathv's original in order to substitute my rhoedown rendering package instead of the Sundown based markdown package.
 
 ### Initialize ###
 
