@@ -11,7 +11,7 @@
 #'   FAQ's: \url{https://github.com/ramnathv/slidify/blob/master/FAQ.md}
 #' @import stringr
 #' @import knitr
-#' @import markdown
+#' @import rhoedown
 #' @import stringr
 #' @import yaml
 #' @import whisker
